@@ -1,52 +1,139 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
+  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('SECOND ASIGNMENT'),
-        ),
-        body: Container(
-          color: Colors.deepOrangeAccent,
-        ),
-        drawer: Opacity(
-          opacity: 0.7,
-          child: Drawer(
+      home: MyHomePage(title: 'HomeWork 2'),
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({Key? key, required this.title}) : super(key: key);
+  final String title;
+
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor:
+          MediaQuery.of(context).orientation == Orientation.portrait
+              ? Colors.red
+              : null,
+      drawer: MediaQuery.of(context).orientation == Orientation.portrait
+          ? Drawer(
+              elevation: 1,
+              backgroundColor: Colors.white10.withAlpha(150),
               child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 70),
+                padding: EdgeInsets.symmetric(
+                    horizontal: MediaQuery.of(context).size.width / 30,
+                    vertical: MediaQuery.of(context).size.height / 10),
                 child: Column(
-                  children: [
-                    Text('FIRST ELEMENT',style: TextStyle(
-                   fontSize: 20
-                    ),),
-                    Text('SECOND ELEMENT',style: TextStyle(
-                        fontSize: 20
-                    )),
-                    Text('THIRD ELEMENT',style: TextStyle(
-                        fontSize: 20
-                    )),
-                    Text('FORTH ELEMENT',style: TextStyle(
-                        fontSize: 20
-                    )),
-                    Text('FIFTHE ELEMENT',style: TextStyle(
-                        fontSize: 20
-                    )),
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: const [
+                    Spacer(),
+                    Text(
+                      'First Element',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    Spacer(),
+                    Text(
+                      'Second Element',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    Spacer(),
+                    Text(
+                      'Third Element',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    Spacer(),
+                    Text(
+                      'Forth Element',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    Spacer(),
+                    Text(
+                      'Fifth Element',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    Spacer(
+                      flex: 12,
+                    ),
                   ],
                 ),
               ),
-            ),
-        ),
-        ),
-
+            )
+          : null,
+      appBar: AppBar(
+        backgroundColor: Colors.deepPurple,
+        title: Text(widget.title),
+      ),
+      body: MediaQuery.of(context).orientation != Orientation.portrait
+          ? Row(
+              children: [
+                Expanded(
+                    child: Container(
+                        height: double.infinity,
+                        color: Colors.white,
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(
+                              horizontal:
+                                  MediaQuery.of(context).size.width / 25,
+                              vertical: MediaQuery.of(context).size.height / 7),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: const [
+                              Spacer(),
+                              Text(
+                                'First Element 1',
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                              Spacer(),
+                              Text(
+                                'Second Element 2',
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                              Spacer(),
+                              Text(
+                                'Third Element 3',
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                              Spacer(),
+                              Text(
+                                'Forth Element 4',
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                              Spacer(),
+                              Text(
+                                'Fifth Element 5',
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                              Spacer(
+                                flex: 12,
+                              ),
+                            ],
+                          ),
+                        ))),
+                Expanded(
+                    child: Container(
+                  height: double.infinity,
+                  color: Colors.deepOrangeAccent,
+                )),
+              ],
+            )
+          : null,
     );
   }
 }
